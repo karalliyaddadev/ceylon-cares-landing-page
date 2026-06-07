@@ -1,142 +1,286 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 .main {
-  display: flex;
-  flex: 1;
+  font-family: "Montserrat", sans-serif;
   width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
-  display: flex;
-  flex-direction: row;
+.content {
+  position: relative;
   width: 100%;
-  max-width: 440px;
-  gap: 16px;
+  height: 100vh;
+}
+
+.split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98);
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+/* Hover Expansion */
+
+.hoverLeft .left {
+  width: 60%;
+}
+
+.hoverLeft .right {
+  width: 40%;
+}
+
+.hoverRight .right {
+  width: 60%;
+}
+
+.hoverRight .left {
+  width: 40%;
+}
+
+/* Background Images */
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+}
+
+/* Gradient overlay */
+.imageWrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+  135deg,
+  rgba(48, 103, 58, 0.35),
+  rgba(48, 103, 58, 0.08)
+);
+  z-index: 1;
+}
+
+
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Dark Overlay */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
+}
+
+.left:hover .overlay,
+.right:hover .overlay {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Content */
+
+.text {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  transform: translate(-50%, -50%);
+  transition: all 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98);
+  color: #fff;
+}
+
+.subtitle {
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+.title {
+  font-size: 80px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+
+.desc {
+  width: 400px;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 14px 40px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 1px;
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.button:hover {
+  background: #fff;
+  color: #000;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+/* Text Movement */
+
+.hoverLeft .left .text {
+  transform: translate(-42%, -50%);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.hoverLeft .right .text {
+  transform: translate(-45%, -50%);
+}
+
+.hoverRight .right .text {
+  transform: translate(-58%, -50%);
+}
+
+.hoverRight .left .text {
+  transform: translate(-45%, -50%);
+}
+
+/* Responsive */
+
+@media (max-width: 1200px) {
+  .title {
+    font-size: 65px;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .text {
+    width: 500px;
+  }
+
+  .desc {
+    width: 350px;
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@media (max-width: 768px) {
+  .content {
+    display: flex;
+    flex-direction: column;
   }
 
-  .intro {
-    gap: 16px;
+  .split {
+    position: relative;
+    width: 100% !important;
+    height: 50vh;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .text {
+    width: 90%;
+    left: 50%;
+  }
+
+  .subtitle {
+    margin-top: 20px;
+  }
+  .title {
+    font-size: 42px;
+  }
+
+  .desc {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .button {
+    margin-bottom: 45px;
+    padding: 12px 30px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+
+.logoCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  pointer-events: none;
+
+  /* smooth movement with panel animation */
+  transition: left 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98),
+              transform 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98);
+}
+
+/* default state (50/50 split) */
+.content .logoCenter {
+  left: 50%;
+}
+
+/* when LEFT panel expands to 60% */
+.hoverLeft .logoCenter {
+  left: 60%;
+}
+
+/* when RIGHT panel expands to 60% */
+.hoverRight .logoCenter {
+  left: 40%;
+}
+
+/* optional: make logo feel more premium */
+.logoCenter img {
+  object-fit: contain;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.35));
+  transition: transform 0.8s ease;
+  border-radius: 45px;
+}
+
+/* subtle interaction enhancement */
+.hoverLeft .logoCenter img,
+.hoverRight .logoCenter img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+
+  /* keep transition smooth on mobile */
+  .logoCenter {
+    transition: top 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98),
+                left 0.8s cubic-bezier(0.87, 0.76, 0.33, 0.98),
+                transform 0.8s ease;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  /* reset positioning behavior for vertical split */
+  .logoCenter {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  /* TOP panel (your LEFT split) expands */
+  .hoverLeft .logoCenter {
+    top: 60%;
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  /* BOTTOM panel (your RIGHT split) expands */
+  .hoverRight .logoCenter {
+    top: 40%;
+  }
+
+  /* optional polish */
+  .logoCenter img {
+    width: 90px;
+    height: auto;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
   }
 }
