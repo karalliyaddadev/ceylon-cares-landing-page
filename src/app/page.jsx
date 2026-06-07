@@ -19,7 +19,8 @@ export default function Home() {
         }`}
       >
         {/* LEFT PANEL */}
-        <div
+        <a
+          href="https://medical.ceylonwellnesscare.com/"
           className={`${styles.split} ${styles.left}`}
           onMouseEnter={() => setHover("left")}
           onMouseLeave={() => setHover("")}
@@ -56,7 +57,7 @@ export default function Home() {
 
             <button className={styles.button}>Explore Medical Care</button>
           </div>
-        </div>
+        </a>
 
         {/* RIGHT PANEL */}
         <div
