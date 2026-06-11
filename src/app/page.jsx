@@ -60,7 +60,8 @@ export default function Home() {
         </a>
 
         {/* RIGHT PANEL */}
-        <div
+        <a
+          href="https://wellness.ceylonwellnesscare.com"
           className={`${styles.split} ${styles.right}`}
           onMouseEnter={() => setHover("right")}
           onMouseLeave={() => setHover("")}
@@ -97,7 +98,7 @@ export default function Home() {
 
             <button className={styles.button}>Discover Wellness Travel</button>
           </div>
-        </div>
+        </a>
 
          {/* CENTER LOGO */}
           <div className={styles.logoCenter}>
